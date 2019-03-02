@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>*|MC:SUBJECT|*</title>
+        <style type="text/css">
+			/* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
+			#outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
+			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
+			body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+			img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+			/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
+			body{margin:0; padding:0;}
+			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+			table{border-collapse:collapse !important;}
+			body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+			/* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
+			/* ========== Page Styles ========== */
+			#bodyCell{padding:20px;}
+			#templateContainer{width:600px;}
+			/**
+			* @tab Page
+			* @section background style
+			* @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+			* @theme page
+			*/
+			body, #bodyTable{
+				/*@editable*/ background-color:white;
+			}
+			/**
+			* @tab Page
+			* @section background style
+			* @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+			* @theme page
+			*/
+			#bodyCell{
+				/*@editable*/ border-top:4px solid white/*#BBBBBB*/;
+			}
+			/**
+			* @tab Page
+			* @section email border
+			* @tip Set the border for your email.
+			*/
+			#templateContainer{
+				/*@editable*/ border:1px solid white/*#BBBBBB*/;
+			}
+			/**
+			* @tab Page
+			* @section heading 1
+			* @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+			* @style heading 1
+			*/
+			h1{
+				/*@editable*/ color:#202020 !important;
+				display:block;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:24px;
+				/*@editable*/ font-style:normal;
+				/*@editable*/ font-weight:bold;
+				/*@editable*/ line-height:100%;
+				/*@editable*/ letter-spacing:normal;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*@editable*/ text-align:center;
+			}
+			/**
+			* @tab Page
+			* @section heading 2
+			* @tip Set the styling for all second-level headings in your emails.
+			* @style heading 2
+			*/
+			h2{
+				/*@editable*/ color:#404040 !important;
+				display:block;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:20px;
+				/*@editable*/ font-style:normal;
+				/*@editable*/ font-weight:bold;
+				/*@editable*/ line-height:100%;
+				/*@editable*/ letter-spacing:normal;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*@editable*/ text-align:left;
+			}
+			/**
+			* @tab Page
+			* @section heading 3
+			* @tip Set the styling for all third-level headings in your emails.
+			* @style heading 3
+			*/
+			h3{
+				/*@editable*/ color:#606060 !important;
+				display:block;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:16px;
+				/*@editable*/ font-style:italic;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ line-height:100%;
+				/*@editable*/ letter-spacing:normal;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*@editable*/ text-align:left;
+			}
+			/**
+			* @tab Page
+			* @section heading 4
+			* @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+			* @style heading 4
+			*/
+			h4{
+				/*@editable*/ color:#808080 !important;
+				display:block;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:14px;
+				/*@editable*/ font-style:italic;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ line-height:100%;
+				/*@editable*/ letter-spacing:normal;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*@editable*/ text-align:left;
+			}
+			/* ========== Header Styles ========== */
+			/**
+			* @tab Header
+			* @section preheader style
+			* @tip Set the background color and bottom border for your email's preheader area.
+			* @theme header
+			*/
+			#templatePreheader{
+				/*@editable*/ background-color:#F4F4F4;
+				/*@editable*/ border-bottom:1px solid #CCCCCC;
+			}
+			/**
+			* @tab Header
+			* @section preheader text
+			* @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+			*/
+			.preheaderContent{
+				/*@editable*/ color:white;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:10px;
+				/*@editable*/ line-height:125%;
+				/*@editable*/ text-align:left;
+			}
+			/**
+			* @tab Header
+			* @section preheader link
+			* @tip Set the styling for your email's preheader links. Choose a color that helps them stand out from your text.
+			*/
+			.preheaderContent a:link, .preheaderContent a:visited, /* Yahoo! Mail Override */ .preheaderContent a .yshortcuts /* Yahoo! Mail Override */{
+				/*@editable*/ color: white;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ text-decoration:underline;
+			}
+			/**
+			* @tab Header
+			* @section header style
+			* @tip Set the background color and borders for your email's header area.
+			* @theme header
+			*/
+			#templateHeader{
+				/*@editable*/ background-color:white;
+				/*@editable*/ border-top:1px solid white;
+				/*@editable*/ border-bottom:1px solid white;
+			}
+			/**
+			* @tab Header
+			* @section header text
+			* @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+			*/
+			.headerContent{
+				/*@editable*/ color:white;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:20px;
+				/*@editable*/ font-weight:bold;
+				/*@editable*/ line-height:100%;
+				/*@editable*/ padding-top:0;
+				/*@editable*/ padding-right:0;
+				/*@editable*/ padding-bottom:0;
+				/*@editable*/ padding-left:0;
+				/*@editable*/ text-align:center;
+				/*@editable*/ vertical-align:middle;
+			}
+			/**
+			* @tab Header
+			* @section header link
+			* @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+			*/
+			.headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+				/*@editable*/ color:#EB4102;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ text-decoration:underline;
+			}
+			#headerImage{
+				max-width:600px;
+				width:250px;
+				height:134px;
+			}
+			/* ========== Body Styles ========== */
+			/**
+			* @tab Body
+			* @section body style
+			* @tip Set the background color and borders for your email's body area.
+			*/
+			#templateBody{
+				/*@editable*/ background-color:white;
+				/*@editable*/ border-top:1px solid white;
+				/*@editable*/ border-bottom:1px solid white;
+			}
+			/**
+			* @tab Body
+			* @section body text
+			* @tip Set the styling for your email's main content text. Choose a size and color that is easy to read.
+			* @theme main
+			*/
+			.bodyContent{
+				/*@editable*/ color:#505050;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:16px;
+				/*@editable*/ line-height:150%;
+				padding-top:20px;
+				padding-right:20px;
+				padding-bottom:20px;
+				padding-left:20px;
+				/*@editable*/ text-align:left;
+			}
+			/**
+			* @tab Body
+			* @section body link
+			* @tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
+			*/
+			.bodyContent a:link, .bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortcuts /* Yahoo! Mail Override */{
+				/*@editable*/ color:#EB4102;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ text-decoration:underline;
+			}
+			.bodyContent img{
+				display:inline;
+				height:auto;
+				max-width:560px;
+			}
+			/* ========== Footer Styles ========== */
+			/**
+			* @tab Footer
+			* @section footer style
+			* @tip Set the background color and borders for your email's footer area.
+			* @theme footer
+			*/
+			#templateFooter{
+				/*@editable*/ background-color:#67d642;
+				/*@editable*/ border-top:1px solid #FFFFFF;
+			}
+			/**
+			* @tab Footer
+			* @section footer text
+			* @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+			* @theme footer
+			*/
+			.footerContent{
+				/*@editable*/ color:black;
+				/*@editable*/ font-family:Helvetica;
+				/*@editable*/ font-size:10px;
+				/*@editable*/ line-height:150%;
+				padding-top:80px;
+				padding-right:20px;
+				padding-bottom:80px;
+				padding-left:20px;
+				/*@editable*/ text-align:center;
+			}
+			/**
+			* @tab Footer
+			* @section footer link
+			* @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+			*/
+			.footerContent a:link, .footerContent a:visited, /* Yahoo! Mail Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo! Mail Override */{
+				/*@editable*/ color:#606060;
+				/*@editable*/ font-weight:normal;
+				/*@editable*/ text-decoration:underline;
+			}
+			/* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ */
+            @media only screen and (max-width: 480px){
+				/* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */
+				body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
+                body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
+				/* /\/\/\/\/\/\/ MOBILE RESET STYLES /\/\/\/\/\/\/ */
+				#bodyCell{padding:10px !important;}
+				/* /\/\/\/\/\/\/ MOBILE TEMPLATE STYLES /\/\/\/\/\/\/ */
+				/* ======== Page Styles ======== */
+				/**
+				* @tab Mobile Styles
+				* @section template width
+				* @tip Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
+				*/
+				#templateContainer{
+					max-width:600px !important;
+					/*@editable*/ width:100% !important;
+				}
+				/**
+				* @tab Mobile Styles
+				* @section heading 1
+				* @tip Make the first-level headings larger in size for better readability on small screens.
+				*/
+				h1{
+					/*@editable*/ font-size:24px !important;
+					/*@editable*/ line-height:100% !important;
+				}
+				/**
+				* @tab Mobile Styles
+				* @section heading 2
+				* @tip Make the second-level headings larger in size for better readability on small screens.
+				*/
+				h2{
+					/*@editable*/ font-size:20px !important;
+					/*@editable*/ line-height:100% !important;
+				}
+				/**
+				* @tab Mobile Styles
+				* @section heading 3
+				* @tip Make the third-level headings larger in size for better readability on small screens.
+				*/
+				h3{
+					/*@editable*/ font-size:18px !important;
+					/*@editable*/ line-height:100% !important;
+				}
+				/**
+				* @tab Mobile Styles
+				* @section heading 4
+				* @tip Make the fourth-level headings larger in size for better readability on small screens.
+				*/
+				h4{
+					/*@editable*/ font-size:16px !important;
+					/*@editable*/ line-height:100% !important;
+				}
+				/* ======== Header Styles ======== */
+				#templatePreheader{display:none !important;} /* Hide the template preheader to save space */
+				/**
+				* @tab Mobile Styles
+				* @section header image
+				* @tip Make the main header image fluid for portrait or landscape view adaptability, and set the image's original width as the max-width. If a fluid setting doesn't work, set the image width to half its original size instead.
+				*/
+				#headerImage{
+					height:auto !important;
+					/*@editable*/ max-width:600px !important;
+					/*@editable*/ /*width:100% !important;*/
+												width:250px;
+												height:134px;
+				}
+				/**
+				* @tab Mobile Styles
+				* @section header text
+				* @tip Make the header content text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+				*/
+				.headerContent{
+					/*@editable*/ font-size:20px !important;
+					/*@editable*/ line-height:125% !important;
+				}
+				/* ======== Body Styles ======== */
+				/**
+				* @tab Mobile Styles
+				* @section body text
+				* @tip Make the body content text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+				*/
+				.bodyContent{
+					/*@editable*/ font-size:18px !important;
+					/*@editable*/ line-height:125% !important;
+				}
+				/* ======== Footer Styles ======== */
+				/**
+				* @tab Mobile Styles
+				* @section footer text
+				* @tip Make the body content text larger in size for better readability on small screens.
+				*/
+				.footerContent{
+					/*@editable*/ font-size:14px !important;
+					/*@editable*/ line-height:115% !important;
+				}
+				.footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
+			}
+
+			#p1{
+				font-size:6px !important;
+			}
+
+			#buttonBody{
+				border-collapse: collapse;
+				border:5px solid #67d642;
+				border-radius: 10px;
+			}
+
+			#buttonBodyDiv{
+				font-size: 18px;
+				color: #67d642;
+				line-height: 1;
+				margin: 0;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				mso-table-lspace:0;
+				mso-table-rspace:0;
+			}
+
+			#buttonLink{
+				text-decoration: none;
+				color: white;
+				border: 0;
+				font-family: Arial, arial, sans-serif;
+				mso-table-lspace:0;
+				mso-table-rspace:0;
+			}
+
+			#HTH{
+				background-color:#F4F4F4;
+				border-top:1px solid #FFFFFF;
+				padding-top:20px;
+				padding-right:20px;
+				padding-bottom:20px;
+				padding-left:20px;
+				text-align:center;
+			}
+
+			#lender{
+				max-width:600px;
+				width:100px;
+				height:107px;
+				text-align:center;
+			}
+
+			#linkImg{
+				width:32px;
+				height:32px;
+			}
+
+		</style>
+    </head>
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    	<center>
+        	<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+            	<tr>
+                	<td align="center" valign="top" id="bodyCell">
+                    	<!-- BEGIN TEMPLATE // -->
+                    	<table border="0" cellpadding="0" cellspacing="0" id="templateContainer">
+                        	<tr>
+                            	<td align="center" valign="top">
+                                	<!-- BEGIN PREHEADER // -->
+                                    <!-- <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templatePreheader">
+                                        <tr>
+                                            <td valign="top" class="preheaderContent" style="padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px;" mc:edit="preheader_content00">
+                                                Use this area to offer a short teaser of your email's content. Text here will show in the preview area of some email clients.
+                                            </td> -->
+                                            <!-- *|IFNOT:ARCHIVE_PAGE|* -->
+                                            <!-- <td valign="top" width="180" class="preheaderContent" style="padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:0;" mc:edit="preheader_content01">
+                                                Email not displaying correctly?<br /><a href="*|ARCHIVE|*" target="_blank">View it in your browser</a>. -->
+                                            <!-- </td> -->
+                                            <!-- *|END:IF|* -->
+                                        <!-- </tr>
+                                    </table> -->
+                                    <!-- // END PREHEADER -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                	<!-- BEGIN HEADER // -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
+                                        <tr>
+                                            <td valign="top" class="headerContent" id="headerImage">
+                                            	<img src="https://www.dropbox.com/s/wmtivhuwe1x1bd0/new%20logo%20final__1520287999_96.70.98.5.jpg?raw=1" alt="Wall Street Lending Logo" style="max-width:600px;" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                            </td>
+                                        </tr>
+                                    </table>
+																		<br>
+																		<br>
+																		<br>
+
+                                    <!-- // END HEADER -->
+                                </td>
+                            </tr>
+                        	  <tr>
+                            	<td align="center" valign="top">
+                                	<!-- BEGIN BODY // -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+                                        <tr>
+                                            <td valign="top" class="bodyContent" mc:edit="body_content">
+                                                <h1>Are your clients being rejected by lenders?</h1>
+                                                <!-- <h3>Creating a good-looking email is simple</h3> -->
+                                                <p>Wall Street Lending specializes in qualifying challenging financial backgrounds.</p>
+																								<p>We take a holistic approach to qualification. Whether it&#39;s taking a harder look at income, liabilities, or credit score consulting we work where others won&#39;t.</p>
+																								<br>
+																								<br>
+																								<table cellpadding="0" cellmargin="0" border="0" height="44" width="178" align="center" id="buttonBody">
+																							    <tr>
+																							      <td bgcolor="#67d642" valign="middle" align="center" width="174" id="buttonBodyDiv">
+																							        <div>
+																							          <a href="https://wallstreet.preapprovemeapp.com/Portal/576/20175/Form?name=Form1003" id="buttonLink" border="0">Let's Get Started</a>
+																							        </div>
+																							      </td>
+																							    </tr>
+																							  </table>
+																								<br>
+																								<br>
+																								<br>
+                                                <h1>24%</h1>
+                                                <!-- <h4>Make your email easy to read</h4> -->
+                                              <p>Represents US total number of denied mortgage applications due to Debt-to-Income ratio alone!*</p>
+																							<p>Don&#39;t miss an opportunity to help your client due to miscalculated DTI, lack of knowledge about Fannie Mae or Freddie Mac guidlines, or the like.</p>
+																							<p id="p1">*2016 Home Mortgage Disclosure Act data representing joint male/female applicants at US national level<p>
+																								<br>
+																								<table border="0" cellpadding="0" cellspacing="0" width="100%" id="HTH">
+																									<tr>
+																										<!-- <td valign="top" class="bodyContent" mc:edit="body_content"> -->
+																										<td valign="top" id="HTH" style="padding-bottom:30px;">
+																											<h1>Happy to Help.</h1>
+																											<p></p>
+																											<p>With over 40 years of combined experience, we're happy to help your client reach their financing goals.</p>
+																											<br>
+																											<p>Have your client apply through the link above or contact us directly!</p>
+																											<p></p>
+																										</td>
+																									</tr>
+																								</table>
+																								<br>
+																								<!-- <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center" id="lender">
+																									<tr>
+																										<td valign="top" id="lender">
+																											<img src="https://www.dropbox.com/s/91leeffx1i4yv95/fheo350.jpg?raw=1"  style="max-width:600px;" id="lender" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+																										</td>
+																									</tr>
+																								</table> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // END BODY -->
+                                </td>
+                            </tr>
+													</table>
+													<!-- // END TEMPLATE -->
+                        	<!-- <tr> -->
+                            	<!-- <td align="center" valign="top"> -->
+                                	<!-- BEGIN FOOTER // -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter">
+                                        <tr>
+                                            <td valign="top" class="footerContent" mc:edit="footer_content00">
+                                                <a href="https://www.linkedin.com/company/wallstreetlending/"><img id="linkImg" src="https://www.dropbox.com/s/xjnfwv4dboc1gb2/new_linkedin.png?raw=1" alt="LinkedIn"></a>&nbsp;&nbsp;&nbsp;
+																								<a href="https://www.facebook.com/greatlowrates/"><img id="linkImg" src="https://www.dropbox.com/s/zd0jymoxzjaj37r/new_facebook.png?raw=1" alt="Facebook"></a>&nbsp;&nbsp;&nbsp;
+																								<a href="https://www.wslmi.com/"><img id="linkImg" src="https://www.dropbox.com/s/q4xo7tpt6az6ugi/new_website.png?raw=1" alt="Website"></a>&nbsp;&nbsp;&nbsp;
+																								<a href="mailto:apply@wslmi.com?Subject=New%20Home%20Loan" target="_top"><img id="linkImg" src="https://www.dropbox.com/s/n0dfd9allhcr2mz/new_email.png?raw=1" alt="Email"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" class="footerContent" style="padding-top:0;" mc:edit="footer_content01">
+                                                <em>Copyright &copy; 2018 Wall Street Lending, All rights reserved.</em>
+																								<p>Equal Housing Lender</p>
+																								<p>NMLS: 175675</p>
+                                                <!-- <img src="https://www.dropbox.com/s/91leeffx1i4yv95/fheo350.jpg?raw=1" alt=""> -->
+                                                <br />
+                                                <br />
+                                                <strong>Our mailing address is:</strong>
+                                                <br />
+                                                <p>17000 17 Mile Road</p>
+																								<p>Clinton Township, MI 48065</p>
+																								<p>(O): (586) 726 - 8478</p>
+																								<p>(F): (586) 726 - 8653</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" class="footerContent" style="padding-top:0; padding-bottom:40px;" mc:edit="footer_content02">
+                                            	<a href="*|UNSUB|*">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp;<a href="*|UPDATE_PROFILE|*">update subscription preferences</a>&nbsp;
+                                            <!-- </td> -->
+                                        </tr>
+                                    </table>
+                                    <!-- // END FOOTER -->
+                                <!-- </td> -->
+        </center>
+				<img src="https://www.google-analytics.com/collect?v=1&tid=UA-108288310-1&cid=555&t=event&ec=email&ea=open&cs=realtoremail&cm=email&cn=realtoremail&dp=%2Femail%2Frealtoremail&dt=realtoremail">
+    </body>
+</html>
