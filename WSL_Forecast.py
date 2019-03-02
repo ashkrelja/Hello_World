@@ -21,6 +21,7 @@ df['Status_ClosedDate'] = df['Status_ClosedDate'].apply(lambda x: pd.to_datetime
 df.set_index('Status_ClosedDate', inplace = True)
 df2 = df.resample('MS').sum()
 df2.plot()
+#github test
 
 output = sm.x13_arima_analysis(df2['Loan_LoanWith'])
 
