@@ -16,7 +16,7 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 
 #import data
 
-path = 'C:/Users/ashkrelja/Documents/Wall_Street_Lending/Technology/Analytics/Operations_Analytics/2019/Operations Analytics_03_2018.csv'
+path = 'SECRET'
 
 df = pd.read_csv(path, usecols = ['Status_ClosedDate', 'Loan_LoanWith'])
 
