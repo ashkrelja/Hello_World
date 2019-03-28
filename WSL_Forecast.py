@@ -5,30 +5,53 @@ Created on Thu Oct  4 14:06:09 2018
 @author: ashkrelja
 """
 
+#import packages
+
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot
 from statsmodels.tsa.tsatools import lagmat
 from statsmodels.tsa.x13 import x13_arima_analysis
+from statsmodels.tsa.seasonal import seasonal_decompose
 
-path = 'C:/Users/ashkrelja/Documents/Wall_Street_Lending/Technology/Analytics/Operations_Analytics/Operations Analytics_03_2018_Copy.csv'
+#import data
+
+path = 'C:/Users/ashkrelja/Documents/Wall_Street_Lending/Technology/Analytics/Operations_Analytics/2019/Operations Analytics_03_2018.csv'
 
 df = pd.read_csv(path, usecols = ['Status_ClosedDate', 'Loan_LoanWith'])
 
+#manipulate data
 
 df.dropna(inplace = True)
 df['Status_ClosedDate'] = df['Status_ClosedDate'].apply(lambda x: pd.to_datetime(x))
 df.set_index('Status_ClosedDate', inplace = True)
 df2 = df.resample('MS').sum()
 df2.plot()
-#github test
 
-output = sm.x13_arima_analysis(df2['Loan_LoanWith'])
+#time-series decomposition
 
-# examine results of X12/X13 procedure - Seasonality adjustment test failed, conclude series is not good candidate for
-# seasonal adjustment
+#X13 seasonal decomposition
 
-print(output.results)
+output = x13_arima_analysis(df2['Loan_LoanWith'])
+
+output.trend.plot()
+output.seasadj.plot()
+output.irregular.plot()
+
+df2['trend'] = output.trend
+df2['seasadj'] = output.seasadj
+df2['seasonal'] = df2['Loan_LoanWith'] - df2['seasadj']
+
+df2['seasonal'].plot(legend = 'seasonal')
+df2['trend'].plot(legend = 'trend')
+df2['seasadj'].plot(legend = 'seasadj')
+
+#autocorrelation plot
+
+#plot autocorrelation function
+pd.tools.plotting.autocorrelation_plot(df2['trend'])
+#notes: positive autocorrelation at lag 40 and significance at lag l0
+
 
 #visually examine trend-cycle component dataset and graph
 
