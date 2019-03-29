@@ -50,8 +50,8 @@ from pyramid.arima import auto_arima
 stepwise_model = auto_arima(df2['seasadj_log'],
                             start_p = 1,
                             start_q = 1,
-                            max_p = 5,
-                            max_q = 5,
+                            max_p = 10,
+                            max_q = 10,
                             m = 12,
                             seasonal = False,
                             trace = True,
@@ -64,45 +64,38 @@ stepwise_model.summary()
 
 #ARIMA(1,1,1) best fit @ AIC = 161.994
 
+#diagnostic tests
+
+residual_array = stepwise_model.resid()
+residuals = pd.DataFrame(residual_array)
+residuals.plot()
+
+residuals.plot(kind='kde')
+print(residuals.describe()) #residual mean 0.002732
+
+
 #split dataset between train and test
 
 train = df2.loc['2010-01-01T00:00:00.000000000':'2017-12-01T00:00:00.000000000']
-test = df2.loc['2010-01-01T00:00:00.000000000':]
+test = df2.loc['2018-01-01T00:00:00.000000000':]
 
 stepwise_model.fit(train['seasadj_log'])
 
-#in-sample forecast and evaluate
+#in-sample forecast
 
-future_forecast = stepwise_model.predict(n_periods=12)
+future_forecast = stepwise_model.predict(n_periods=15)
 
 print(future_forecast)
 
-a
+#compare to actual data
+
+future_forecast = pd.DataFrame(future_forecast,index = test.index,columns=['Prediction'])
+future_forecast.apply(lambda x: np.exp(x)).plot()
+
+pd.concat([test['seasadj_log'], future_forecast,],axis=1).plot()
 
 
 
 
 
-
-
-
-
-
-
-#visually examine trend-cycle component dataset and graph
-
-print(output.trend)
-output.trend.plot()
-
-# manipulate trend-cycle data to yield 1st difference and test for non-stationarity
-cyc_component = output.trend
-log_cyc_component = pd.DataFrame(np.log(cyc_component))
-lag_log_cyc_component = lagmat(log_cyc_component, maxlag=1, use_pandas=1)
-dif1 = log_cyc_component['trend'] - lag_log_cyc_component['trend.L.1']
-
-
-df01 = pd.DataFrame(cyc_component, column)
-df02 = pd.DataFrame(log_cyc_component)
-
-df3 = pd.concat([df2,df01,df02])
 
