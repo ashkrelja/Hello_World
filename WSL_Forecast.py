@@ -5,13 +5,11 @@ Created on Thu Oct  4 14:06:09 2018
 @author: ashkrelja
 """
 
-#import packages
+
+#import data
 
 import pandas as pd
 import numpy as np
-from statsmodels.tsa.x13 import x13_arima_analysis
-
-#import data
 
 path = 'SECRET'
 
@@ -26,6 +24,8 @@ df2 = df.resample('MS').sum()
 df2.plot()
 
 #X13 seasonal decomposition
+
+from statsmodels.tsa.x13 import x13_arima_analysis
 
 output = x13_arima_analysis(df2['Loan_LoanWith'])
 
@@ -42,6 +42,8 @@ df2['seasadj_log'].plot() # 1st difference model in order to eliminate trend
 
 df2.head()
 
+
+
 #ARIMA grid search
 
 from pyramid.arima import auto_arima
@@ -57,7 +59,8 @@ stepwise_model = auto_arima(df2['seasadj_log'],
                             trace = True,
                             d = 1,
                             suppress_warnings = True,
-                            stepwise = True)
+                            stepwise = True,
+                            with_intercept = False)
 
 
 stepwise_model.summary()
@@ -89,10 +92,12 @@ print(future_forecast)
 
 #compare to actual data
 
-future_forecast = pd.DataFrame(future_forecast,index = test.index,columns=['Prediction'])
-future_forecast.apply(lambda x: np.exp(x)).plot()
+future_forecast = pd.DataFrame(future_forecast,index = test.index,columns=['Prediction']) #put predictions in dataframe
+future_forecast['Prediction'] = future_forecast.apply(lambda x: np.exp(x)) #take predictions from log to level
 
-pd.concat([test['seasadj_log'], future_forecast,],axis=1).plot()
+new = pd.concat([future_forecast['Prediction'],test['seasonal'], test['Loan_LoanWith']],axis=1)
+new['Predict_Lev_Seas'] = new['Prediction'] + new['seasonal']
+pd.concat([new['Predict_Lev_Seas'], new['Loan_LoanWith']],axis=1).plot()
 
 
 
