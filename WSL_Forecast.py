@@ -31,17 +31,45 @@ output = x13_arima_analysis(df2['Loan_LoanWith'])
 
 df2['trend'] = output.trend
 df2['seasadj'] = output.seasadj
+df2['irregular'] = output.irregular
 df2['seasonal'] = df2['Loan_LoanWith'] - df2['seasadj']
-df2['seasadj_log'] = df2['seasadj'].apply(lambda x: np.log(x)) #log-series
+df2['seasadj_irr'] = df2['seasadj'] - df2['irregular']
+df2['seasadj_log'] = df2['seasadj_irr'].apply(lambda x: np.log(x)) #log-series
 
 
 df2['seasonal'].plot(legend = 'seasonal')
 df2['trend'].plot(legend = 'trend')
 df2['seasadj'].plot(legend = 'seasadj')
+df2['irregular'].plot(legend = 'irregular')
+df2['seasadj_irr'].plot(legend = 'fully adjusted')
 df2['seasadj_log'].plot() # 1st difference model in order to eliminate trend
 
 df2.head()
 
+#stationarity
+
+from statsmodels.tsa.statespace.tools import diff
+from statsmodels.tsa.stattools import adfuller
+
+df2['diff_1_seasadj'] = diff(diff(diff(diff(df2['seasadj_log']))))
+df2['diff_1_seasadj'].plot()
+
+df2['diff_1_seasadj'].replace(np.NaN,0,inplace=True)
+adfuller(df2['diff_1_seasadj']) #reject Ho, conclude Ha: no unit root
+
+#ACF(MA) - PACF(AR)
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+plot_acf(df2['diff_1_seasadj']) # MA(1,2,5)
+
+plot_pacf(df2['diff_1_seasadj']) # AR(1)
+
+#self-developed ARIMA
+
+from statsmodels.tsa.arima_model import ARIMA
+
+model = ARIMA(df2['seasadj_log'], order=(1,4,(1,2,5)))
 
 
 #ARIMA grid search
