@@ -4,8 +4,6 @@ Created on Thu Oct  4 14:06:09 2018
 
 @author: ashkrelja
 """
-
-
 #import data
 
 import pandas as pd
@@ -21,6 +19,7 @@ df.dropna(inplace = True)
 df['Status_ClosedDate'] = df['Status_ClosedDate'].apply(lambda x: pd.to_datetime(x))
 df.set_index('Status_ClosedDate', inplace = True)
 df2 = df.resample('MS').sum()
+df2 = df2.loc['2013-01-01T00:00:00.000000000':]
 df2.plot()
 
 #X13 seasonal decomposition
@@ -51,7 +50,7 @@ df2.head()
 from statsmodels.tsa.statespace.tools import diff
 from statsmodels.tsa.stattools import adfuller
 
-df2['diff_1_seasadj'] = diff(diff(diff(diff(df2['seasadj_log']))))
+df2['diff_1_seasadj'] = diff(diff(df2['seasadj_log']))
 df2['diff_1_seasadj'].plot()
 
 df2['diff_1_seasadj'].replace(np.NaN,0,inplace=True)
@@ -61,18 +60,76 @@ adfuller(df2['diff_1_seasadj']) #reject Ho, conclude Ha: no unit root
 
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 
-plot_acf(df2['diff_1_seasadj']) # MA(1,2,5)
+plot_acf(df2['diff_1_seasadj']) # MA(4)
 
-plot_pacf(df2['diff_1_seasadj']) # AR(1)
+plot_pacf(df2['diff_1_seasadj']) # AR(0)
 
 #self-developed ARIMA
 
-from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.tsa.arima_model import ARIMA, ARIMAResults
 
-model = ARIMA(df2['seasadj_log'], order=(1,4,(1,2,5)))
+model = ARIMA(df2['seasadj_log'], order=(1,2,4))
 
+model_fit = model.fit(disp=0)
 
-#ARIMA grid search
+print(model_fit.summary())
+
+#ARIMA(1,2,4) best fit @ AIC = -665.884
+
+#diagnostics
+residual_array_1 = pd.DataFrame(model_fit.resid)
+residual_array_1.plot()
+#residuals fluctuate around 0
+
+residual_array_1.plot(kind='kde')
+print(residual_array_1.describe())
+#normal distribution of residuals with mean 0
+
+#in-sample prediction vs actual
+
+df2['insample_prediction'] = model_fit.predict(start = '2018-01-01T00:00:00.000000000',
+                                               end = '2019-03-01T00:00:00.000000000')
+
+df2['insample_prediction_level'] = model_fit.predict(start = '2018-01-01T00:00:00.000000000',
+                                                     end = '2019-03-01T00:00:00.000000000',
+                                                     typ='levels')
+
+model_fit.plot_predict(start = '2018-01-01T00:00:00.000000000',
+                       end = '2019-03-01T00:00:00.000000000',
+                       alpha=0.05)
+
+pd.concat([df2['insample_prediction'],df2['diff_1_seasadj']], axis=1).plot() #2nd differenced prediction vs actual
+
+pd.concat([df2['insample_prediction_level'],df2['seasadj_log']], axis=1).plot() #level prediction vs actual
+
+#performance
+
+from statsmodels.tools.eval_measures import rmse
+
+df2['insample_prediction_level_seas'] = df2['insample_prediction_level'].apply(lambda x: np.exp(x)) + df2['seasonal'] + df2['irregular']
+pd.concat([df2['insample_prediction_level_seas'],df2['Loan_LoanWith']],axis = 1).plot()
+
+pred_1= df2['insample_prediction'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+obsv_1 = df2['diff_1_seasadj'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+rmse(pred_1,obsv_1) #0.002801158285472904
+
+pred_2 = df2['insample_prediction_level'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+obsv_2 = df2['seasadj_log'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+rmse(pred_2,obsv_2) #0.0014153190808288993
+
+pred_3 = df2['insample_prediction_level_seas'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+obsv_3 = df2['Loan_LoanWith'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
+rmse(pred_3,obsv_3)
+
+#out-sample forecast
+
+model_fit.plot_predict(start = '2019-04-01T00:00:00.000000000', end = '2020-03-01T00:00:00.000000000', plot_insample=False)
+
+os_prediction = model_fit.predict(start = '2019-04-01T00:00:00.000000000', end = '2020-03-01T00:00:00.000000000',typ = 'levels')
+
+os_prediction_df = pd.DataFrame(os_prediction, columns=['outsample_prediction_level'])
+
+df3 = pd.concat([os_prediction_df, df2], axis =1)
 
 from pyramid.arima import auto_arima
 
@@ -85,7 +142,7 @@ stepwise_model = auto_arima(df2['seasadj_log'],
                             m = 12,
                             seasonal = False,
                             trace = True,
-                            d = 1,
+                            d = 2,
                             suppress_warnings = True,
                             stepwise = True,
                             with_intercept = False)
