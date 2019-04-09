@@ -111,7 +111,7 @@ pd.concat([df2['insample_prediction_level_seas'],df2['Loan_LoanWith']],axis = 1)
 
 pred_1= df2['insample_prediction'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
 obsv_1 = df2['diff_1_seasadj'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
-rmse(pred_1,obsv_1) #0.002801158285472904
+rmse(pred_1,obsv_1) #0.0014153190808289856
 
 pred_2 = df2['insample_prediction_level'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
 obsv_2 = df2['seasadj_log'].loc['2018-01-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000']
@@ -123,14 +123,28 @@ rmse(pred_3,obsv_3)
 
 #out-sample forecast
 
-model_fit.plot_predict(start = '2019-04-01T00:00:00.000000000', end = '2020-03-01T00:00:00.000000000', plot_insample=False)
+model_fit.plot_predict(start = '2019-04-01T00:00:00.000000000',
+                       end = '2020-03-01T00:00:00.000000000',
+                       plot_insample=False)
 
-os_prediction = model_fit.predict(start = '2019-04-01T00:00:00.000000000', end = '2020-03-01T00:00:00.000000000',typ = 'levels')
+os_prediction = model_fit.predict(start = '2019-04-01T00:00:00.000000000',
+                                  end = '2020-03-01T00:00:00.000000000',
+                                  typ = 'levels')
 
-os_prediction_df = pd.DataFrame(os_prediction, columns=['outsample_prediction_level'])
+os_prediction_df = pd.DataFrame(os_prediction, columns=['outsample_prediction_level']).apply(lambda x: np.exp(x))
 
-df3 = pd.concat([os_prediction_df, df2], axis =1)
+df3 = pd.concat([os_prediction_df, df2], axis=1)
 
+df3['seasonal'].loc['2019-04-01T00:00:00.000000000':'2020-03-01T00:00:00.000000000'] = df2['seasonal'].loc['2018-04-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000'].values #repeat seasonal values
+
+df3['irregular'].loc['2019-04-01T00:00:00.000000000':'2020-03-01T00:00:00.000000000'] = df2['irregular'].loc['2018-04-01T00:00:00.000000000':'2019-03-01T00:00:00.000000000'].values #repeat irregular values
+
+df3['final_fcst'] = df3['outsample_prediction_level'] + df3['seasonal'] + df3['irregular']
+
+pd.concat([df3['final_fcst'],df3['Loan_LoanWith']], axis =1).plot()
+
+
+#Experiment
 from pyramid.arima import auto_arima
 
 
