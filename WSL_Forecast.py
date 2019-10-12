@@ -9,7 +9,7 @@ Created on Thu Oct  4 14:06:09 2018
 import pandas as pd
 import numpy as np
 
-path = 'SECRET'
+path = 'C:/Users/ashkrelja/Documents/Wall_Street_Lending/Technology/Analytics/Operations_Analytics/2019/Operations Analytics_03_2018.csv'
 
 df = pd.read_csv(path, usecols = ['Status_ClosedDate', 'Loan_LoanWith'])
 
@@ -143,8 +143,9 @@ df3['final_fcst'] = df3['outsample_prediction_level'] + df3['seasonal'] + df3['i
 
 pd.concat([df3['final_fcst'],df3['Loan_LoanWith']], axis =1).plot()
 
+df3.to_csv('C:/Users/ashkrelja/Documents/Wall_Street_Lending/Technology/Analytics/Operations_Analytics/2019/output.csv')
 
-#Experiment
+#Challenger Model
 from pyramid.arima import auto_arima
 
 
